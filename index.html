@@ -10,6 +10,14 @@
           content="Prithwish Samanta is a seasoned Full Stack Developer with 3+ years of experience in Java, Spring Boot, Angular, and AWS. Specializing in scalable enterprise web applications and microservices.">
     <meta name="keywords"
           content="full stack developer, java developer, spring boot, angular, react, aws, microservices, web development, software engineer, cognizant, mongodb, sql, front end developer, back end developer">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Open+Sans:wght@400;600&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+
     <link rel="stylesheet" href="styles.css">
 
     <script type="application/ld+json">
@@ -45,35 +53,47 @@
 <header>
     <div><strong>Prithwish Samanta</strong></div>
     <nav id="nav">
-        <a href="https://drive.google.com/file/d/1sIL3T4GK6aiaXod6kDS9Vvmm_jRvjiJ2/view?usp=drive_link" target="_blank">Resume</a>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="https://drive.google.com/file/d/1sIL3T4GK6aiaXod6kDS9Vvmm_jRvjiJ2/view?usp=drive_link" target="_blank"
+           class="btn-resume">Resume</a>
     </nav>
 </header>
 
 <section class="hero" id="home">
-    <h1>Hello, I'm Prithwish!</h1>
-    <p>A seasoned full-stack developer delivering scalable solutions with a focus on clean UI/UX.</p>
-    <a class="btn" href="#contact">Hire me!</a>
+    <div class="hero-content" data-aos="fade-right">
+        <h1>Hello, I'm Prithwish!</h1>
+        <p>A seasoned full-stack developer delivering scalable solutions with a focus on clean UI/UX.</p>
+        <div class="hero-buttons">
+            <a class="btn btn-primary" href="#contact">Hire me!</a>
+            <a class="btn btn-secondary" href="#projects">View My Work</a>
+        </div>
+    </div>
+    <div class="hero-image-container" data-aos="fade-left">
+        <img src="assets/profile-photo.jpg" alt="profile photo">
+    </div>
 </section>
 
-<section id="about">
+<section id="about" data-aos="fade-up">
     <h2>About Me</h2>
-    <p style="margin-top: 1rem; line-height: 1.6;">
+    <p style="margin-top: 1rem; line-height: 1.7;">
         I'm a <b>Full Stack Developer</b> with <b>3+ years of experience</b> (at Cognizant) in building and deploying
-        scalable enterprise web applications using <b>Java, Spring Boot, Angular, and MongoDB</b>.<br/>
-
-        I’m a <b>2x AWS Certified cloud practitioner</b>, skilled in developing <b>microservices, REST APIs, and
+        scalable enterprise web applications using <b>Java, Spring Boot, Angular, and MongoDB</b>. I’m a <b>2x AWS
+        Certified cloud practitioner</b>, skilled in developing <b>microservices, REST APIs, and
         front-end
-        interfaces</b> with strong focus on performance, scalability, and user experience.<br/>
-
+        interfaces</b> with strong focus on performance, scalability, and user experience. <br/><br/>
         <b>Open to opportunities in Full Stack, Back-End, or Cloud Development roles.</b> Particularly interested in
         companies
         leveraging Java/Spring, Angular/React, and AWS to solve real-world problems at scale.
     </p>
 </section>
 
-<section id="skills">
+<section id="skills" data-aos="fade-up">
     <h2>Skills</h2>
-    <div class="skills">
+    <div class="skills-container">
         <div class="skills-category">
             <h3>Programming languages:</h3>
             <div class="skills-list">
@@ -84,7 +104,7 @@
                 <div class="skill-item">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
                          alt="JS"/>
-                    <span>Java Script</span>
+                    <span>JavaScript</span>
                 </div>
                 <div class="skill-item">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
@@ -212,14 +232,14 @@
     </div>
 </section>
 
-<section id="experience">
+<section id="experience" data-aos="fade-up">
     <h2>Experience</h2>
-    <div class="experience">
+    <div class="experience-card">
         <h3>Cognizant Technology Sol.</h3>
         <div class="timeline">
             <div class="timeline-entry">
                 <h4>Software Engineer</h4>
-                <span>Apr 2025 - Present</span>
+                <span>Apr 2023 - Present</span>
                 <ul>
                     <li>Contributed to the backend development of a group insurance policy platform for AXA, one of the
                         world’s largest insurance providers.
@@ -237,7 +257,7 @@
             </div>
             <div class="timeline-entry">
                 <h4>Jr. Software Engineer</h4>
-                <span>Sept 2022 - Aug 2025</span>
+                <span>Sept 2022 - Mar 2023</span>
                 <ul>
                     <li>Maintained and modernized legacy applications built on an older Java stack and SOAP-based
                         architecture, enhancing system stability while integrating new features to meet evolving
@@ -274,11 +294,11 @@
     </div>
 </section>
 
-<section id="education">
+<section id="education" data-aos="fade-up">
     <h2>Education</h2>
-    <div class="education">
+    <div class="education-card">
         <h3>Academy of Technology — BTech in Computer Science and Engineering <span
-                style="float: right; font-weight: normal;">2018 - 2022</span>
+                style="float: right; font-weight: normal; font-size: 0.9em; color: #555;">2018 - 2022</span>
         </h3>
         <ul>
             <li>Location: Hooghly, West Bengal</li>
@@ -287,55 +307,85 @@
     </div>
 </section>
 
-<section id="projects">
+<section id="projects" data-aos="fade-up">
     <h2>Projects</h2>
-    <div class="project">
-        <h3>Movie ticket booking site</h3>
-        <ul>
-            <li>Implemented core features such as user registration, login, movie and theater browsing and ticket
-                booking.
-            </li>
-            <li>Employed String Boot, MySQL, JWT and Kafka on the serverside to manage user authentication, data
-                storage, secure communication and real-time update.
-            </li>
-            <li>Engineered a dynamic web application with Angular, offering user-friendly interface for seamless
-                interactions.
-            </li>
-        </ul>
+    <div class="projects-grid">
+        <div class="project-card">
+            <div class="project-content">
+                <h3>Movie ticket booking site</h3>
+                <p class="project-description">
+                    Implemented core features such as user registration, login, movie and theater Browse and ticket
+                    booking. Engineered a dynamic web application with Angular for seamless interactions.
+                </p>
+                <div class="project-tags">
+                    <span>Spring Boot</span>
+                    <span>MySQL</span>
+                    <span>JWT</span>
+                    <span>Kafka</span>
+                    <span>Angular</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/prithwish-samanta/movie-booking-app" class="btn btn-small btn-secondary"
+                       target="_blank">View Live</a>
+                    <a href="https://github.com/prithwish-samanta/movie-booking-app" class="btn btn-small btn-outline"
+                       target="_blank">GitHub</a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<section id="certifications">
+<section id="certifications" data-aos="fade-up">
     <h2>Certifications</h2>
-    <div class="certification">
-        <h3>AWS Certified AI Practitioner</h3>
-        <p>Issued May 2025</p>
-        <p>skills: ML, AWS, Generative AI, Prompt engineering, AWS Bedrock, AWS SageMaker, Amazon Q Business</p>
-    </div>
-    <div class="certification">
-        <h3>AWS Certified Cloud Practitioner</h3>
-        <p>Issued Jul 2023</p>
-        <p>skills: AWS, DynamoDB, API Gateway, IAM, SQS, Lambda, ELB, S3, Route53, CloudFront</p>
-    </div>
-    <div class="certification">
-        <h3>Python for Everybody</h3>
-        <p>Issued Apr 2020</p>
-        <p>skills: Python, Data structure, Web architecture, SQL Database, Data science</p>
+    <div class="certifications-container">
+        <div class="certification-card">
+            <h3>AWS Certified AI Practitioner</h3>
+            <p class="certification-date">Issued May 2024</p>
+            <p class="certification-skills">Skills: ML, AWS, Generative AI, Prompt engineering, AWS Bedrock, AWS
+                SageMaker, Amazon Q Business</p>
+        </div>
+        <div class="certification-card">
+            <h3>AWS Certified Cloud Practitioner</h3>
+            <p class="certification-date">Issued Jul 2023</p>
+            <p class="certification-skills">Skills: AWS, DynamoDB, API Gateway, IAM, SQS, Lambda, ELB, S3, Route53,
+                CloudFront</p>
+        </div>
+        <div class="certification-card">
+            <h3>Python for Everybody</h3>
+            <p class="certification-date">Issued Apr 2020</p>
+            <p class="certification-skills">Skills: Python, Data structure, Web architecture, SQL Database, Data
+                science</p>
+        </div>
     </div>
 </section>
 
-<section id="contact">
+<section id="contact" data-aos="fade-up">
     <h2>Contact</h2>
-    <p style="margin-top: 1rem;">
-        Feel free to reach out via <a href="mailto:wprith@gmail.com">email</a> or connect on <a
-            href="https://www.linkedin.com/in/prithwish-samanta/" target="_blank">LinkedIn</a>.
+    <p style="margin-top: 1rem; text-align: center;">
+        Feel free to reach out! I'm excited to discuss new opportunities and collaborations.
     </p>
+    <div class="contact-links">
+        <a href="mailto:wprith@gmail.com" class="btn btn-primary">Email Me</a>
+        <a href="https://www.linkedin.com/in/prithwish-samanta/" target="_blank" class="btn btn-secondary">LinkedIn
+            Profile</a>
+    </div>
 </section>
 
 <footer>
+    <div class="footer-socials">
+        <a href="https://github.com/prithwish-samanta/" target="_blank" title="GitHub">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
+                 alt="GitHub"/>
+        </a>
+        <a href="https://www.linkedin.com/in/prithwish-samanta/" target="_blank" title="LinkedIn">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg"
+                 alt="LinkedIn"/>
+        </a>
+    </div>
     &copy; <span id="current-year"></span> Prithwish Samanta. All rights reserved.
 </footer>
 
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="scripts.js" defer></script>
 </body>
 </html>
