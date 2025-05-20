@@ -522,10 +522,11 @@ footer {
     transition: transform 0.3s ease;
 }
 
-.footer-socials a img {
+.footer-socials a svg {
     width: 32px;
     height: 32px;
     vertical-align: middle;
+    color: white;
 }
 
 .footer-socials a:hover {
