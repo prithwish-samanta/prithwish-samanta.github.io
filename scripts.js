@@ -1,4 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // START: Add this theme toggling logic
+    const themeToggle = document.getElementById('theme-toggle');
+
+    // Set initial state of the toggle based on the dark-mode class on the <html> tag
+    if (document.documentElement.classList.contains('dark-mode')) {
+        themeToggle.checked = true;
+    }
+
+    themeToggle.addEventListener('change', function () {
+        // Toggle the .dark-mode class on the <html> element
+        document.documentElement.classList.toggle('dark-mode');
+
+        // Save the user's preference to localStorage
+        if (this.checked) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+    });
+    // END: Theme toggling logic
+
     // Set current year in footer
     const currentYearElem = document.getElementById('current-year');
     if (currentYearElem) {

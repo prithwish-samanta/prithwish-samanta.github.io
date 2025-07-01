@@ -1,3 +1,6 @@
+/* =========================================
+   LIGHT MODE
+   ========================================= */
 :root {
     --primary-color: #4A40D0; /* Original primary */
     --primary-hover: #4338ca; /* Original hover */
@@ -14,6 +17,24 @@
     --font-body: 'Open Sans', sans-serif;
     --border-radius-sm: 6px;
     --border-radius-md: 12px;
+}
+
+/* =========================================
+   THEME SWITCHER & DARK MODE
+   ========================================= */
+
+html.dark-mode {
+    --primary-color: #bc9fff;
+    --primary-hover: #ad92ea;
+    --secondary-color: #66BB9A;
+    --background-light: #1e1f20;
+    --background-white: #121212;
+    --text-dark: #F3F4F6;
+    --text-medium: #9CA3AF;
+    --text-light: #6B7280;
+    --border-color: #374151;
+    --card-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    --card-hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -144,6 +165,58 @@ nav a.btn-resume::after {
     display: none;
 }
 
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+    cursor: pointer;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider-icon {
+    content: "";
+    position: absolute;
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNlYTRlMDYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSI1Ij48L2NpcmNsZT48bGluZSB4MT0iMTIiIHkxPSIxIiB4Mj0iMTIiIHkyPSIzIj48L2xpbmU+PGxpbmUgeDE9IjEyIiB5MT0iMjEiIHgyPSIxMiIgeTI9IjIzIj48L2xpbmU+PGxpbmUgeDE9IjQuMjIiIHkxPSI0LjIyIiB4Mj0iNS42NCIgeTI9IjUuNjQiPjwvbGluZT48bGluZSB4MT0iMTguMzYiIHkxPSIxOC4zNiIgeDI9IjE5Ljc4IiB5Mj0iMTkuNzgiPjwvbGluZT48bGluZSB4MT0iMSIgeTE9IjEyIiB4Mj0iMyIgeTI9IjEyIj48L2xpbmU+PGxpbmUgeDE9IjIxIiB5MT0iMTIiIHgyPSIyMyIgeTI9IjEyIj48L2xpbmU+PGxpbmUgeDE9IjQuMjIiIHkxPSIxOS43OCIgeDI9IjUuNjQiIHkyPSIxOC4zNiI+PC9saW5lPjxsaW5lIHgxPSIxOC4zNiIgeTE9IjUuNjQiIHgyPSIxOS43OCIgeTI9IjQuMjIiPjwvbGluZT48L3N2Zz4=');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:checked + .slider .slider-icon {
+    transform: translateX(26px);
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNlYTRlMDYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMjEgMTIuNzlBOSA5IDAgMSAxIDExLjIxIDMgNyA3IDAgMCAwIDIxIDEyLjc5eiI+PC9wYXRoPjwvc3ZnPg==');
+}
+
 
 section {
     padding: 4rem 2rem;
@@ -196,7 +269,6 @@ section {
     max-width: 100%;
     height: auto;
     border-radius: 50%;
-/ Or other shape box-shadow: 0 10 px 30 px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -215,7 +287,7 @@ section {
 
 .btn-primary {
     background: var(--primary-color);
-    color: white;
+    color: var(--background-white);
     border-color: var(--primary-color);
 }
 
@@ -234,7 +306,7 @@ section {
 
 .btn-secondary:hover {
     background: var(--primary-color);
-    color: white;
+    color: var(--background-white);
     transform: translateY(-2px);
 }
 
@@ -453,6 +525,11 @@ section {
     font-weight: 600;
 }
 
+html.dark-mode .project-tags span {
+    background-color: rgba(88, 80, 224, 0.2);
+    color: var(--primary-color);
+}
+
 .project-links {
     display: flex;
     gap: 1rem;
@@ -514,6 +591,14 @@ section {
     flex-grow: 1;
 }
 
+html.dark-mode .skill-item img,
+html.dark-mode .certification-logo {
+    background: #e2e8f0;
+    border-radius: 50%;
+    padding: 4px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
 /* Contact Section */
 #contact p {
     font-size: 1.1rem;
@@ -566,6 +651,15 @@ footer {
 footer > span:last-of-type {
     display: inline-block;
     margin-top: 1rem;
+}
+
+html.dark-mode footer {
+    background-color: var(--background-white);
+    color: var(--text-medium);
+}
+
+body, header, .project-card, .skill-item, .experience-card, .education-card, .certification-card {
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 
 

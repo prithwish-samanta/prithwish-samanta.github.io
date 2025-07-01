@@ -121,6 +121,14 @@
         <a href="#projects">Projects</a>
         <a href="https://drive.google.com/file/d/1sIL3T4GK6aiaXod6kDS9Vvmm_jRvjiJ2/view?usp=drive_link" target="_blank"
            class="btn-resume">Resume</a>
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="theme-toggle">
+                <input type="checkbox" id="theme-toggle"/>
+                <span class="slider">
+                    <span class="slider-icon"></span>
+                </span>
+            </label>
+        </div>
     </nav>
 </header>
 
@@ -510,5 +518,10 @@
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="scripts.js" defer></script>
+<script>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+    }
+</script>
 </body>
 </html>
