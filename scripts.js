@@ -1,75 +1,67 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const themeToggleButton = document.getElementById("theme-toggle-btn");
-
-    // Function to set the theme
-    const setTheme = (isDark) => {
-        if (isDark) {
-            document.documentElement.classList.add("dark-mode");
-            localStorage.setItem("theme", "dark");
-        } else {
-            document.documentElement.classList.remove("dark-mode");
-            localStorage.setItem("theme", "light");
-        }
-    };
-
-    // Check for saved theme preference or system preference
-    const prefersDark =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const savedTheme = localStorage.getItem("theme");
-
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-        setTheme(true);
-    } else {
-        setTheme(false);
-    }
-
-    // Add click event listener to the button
-    themeToggleButton.addEventListener("click", () => {
-        const isDark = document.documentElement.classList.contains("dark-mode");
-        setTheme(!isDark);
+// Custom cursor (only on non-touch devices)
+const cursor = document.getElementById('cursor');
+if (cursor && window.matchMedia('(pointer: fine)').matches) {
+    document.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
     });
-
-    // Set current year in footer
-    const currentYearElem = document.getElementById("current-year");
-    if (currentYearElem) {
-        currentYearElem.textContent = new Date().getFullYear();
-    }
-
-    // Initialize AOS (Animate On Scroll)
-    AOS.init({
-        duration: 700,
-        easing: "ease-in-out",
-        once: true,
-        offset: 100,
-    });
-
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll("header nav a:not(.btn-resume)");
-
-    window.addEventListener("scroll", () => {
-        let current = "";
-        sections.forEach((section) => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (
-                pageYOffset >= sectionTop - sectionHeight / 3 ||
-                (section.id === "home" && pageYOffset < sectionHeight / 2)
-            ) {
-                current = section.getAttribute("id");
-            }
+    document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.width = '24px';
+            cursor.style.height = '24px';
+            cursor.style.background = 'transparent';
+            cursor.style.border = '1.5px solid var(--accent)';
         });
-
-        navLinks.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${current}`) {
-                link.classList.add("active");
-            }
+        el.addEventListener('mouseleave', () => {
+            cursor.style.width = '8px';
+            cursor.style.height = '8px';
+            cursor.style.background = 'var(--accent)';
+            cursor.style.border = 'none';
         });
-
-        if (pageYOffset < sections[0].offsetTop + sections[0].clientHeight / 2) {
-            const homeLink = document.querySelector('header nav a[href="#home"]');
-            if (homeLink) homeLink.classList.add("active");
-        }
     });
+}
+
+// Navbar on scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
 });
+
+// Mobile hamburger toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        navToggle.classList.toggle('open', isOpen);
+        navToggle.setAttribute('aria-expanded', isOpen);
+    });
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            navToggle.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+    // Close menu on outside click
+    document.addEventListener('click', e => {
+        if (!navbar.contains(e.target)) {
+            navLinks.classList.remove('open');
+            navToggle.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+}
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+            setTimeout(() => e.target.classList.add('visible'), i * 80);
+            obs.unobserve(e.target);
+        }
+    });
+}, {threshold: 0.1});
+reveals.forEach(el => obs.observe(el));
