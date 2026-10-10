@@ -2,7 +2,8 @@
     email: "wprith@gmail.com",
     linkedin: "https://www.linkedin.com/in/prithwish-samanta/",
     github: "https://github.com/prithwish-samanta",
-    resumePdf: ""
+    resumePdf: "",
+    photo: "assets/profile-photo.jpg"
   };
   const CERTS = [
     { name: "AWS Certified Solutions Architect – Associate", issuer: "Amazon Web Services", img: "assets/badges/aws-certified-solutions-architect-associate.png", url: "https://www.credly.com/badges/5a8b78fe-9a7e-474e-82d9-4132e44f018c/public_url" },
@@ -59,6 +60,17 @@
     li.textContent = c.name + " – " + c.issuer;
     resumeCerts.appendChild(li);
   });
+
+  // Profile photo (falls back to initials if empty or missing)
+  const photoEl = document.getElementById("photo");
+  const showInitials = () => { photoEl.textContent = "PS"; };
+  if (CONFIG.photo) {
+    const im = new Image();
+    im.alt = "Portrait of Prithwish Samanta";
+    im.onerror = () => { im.remove(); showInitials(); };
+    im.src = CONFIG.photo;
+    photoEl.appendChild(im);
+  } else { showInitials(); }
 
   // Skills
   document.querySelectorAll("[data-icon]").forEach(li => {
