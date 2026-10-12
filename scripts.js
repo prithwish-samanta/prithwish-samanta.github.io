@@ -16,6 +16,9 @@
     { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", img: "assets/badges/aws-certified-cloud-practitioner.png", url: "https://www.credly.com/badges/af5c3674-e9a5-4b5e-b181-26a826475a36/public_url" }
   ];
   const ICONS = {
+    mail: { stroke: "M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM22 7l-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" },
+    linkedin: { stroke: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM6 4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" },
+    github: { fill: "M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" },
     java: { stroke: "M10 2v2M14 2v2M6 2v2M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" },
     cloud: { stroke: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" },
     database: { stroke: "M21 5c0 1.66-4.03 3-9 3S3 6.66 3 5s4.03-3 9-3 9 1.34 9 3ZM3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" },
@@ -61,41 +64,20 @@
     resumeCerts.appendChild(li);
   });
 
-  // Profile photo (falls back to initials if empty or missing)
-  const photoEl = document.getElementById("photo");
-  const showInitials = () => { photoEl.textContent = "PS"; };
-  if (CONFIG.photo) {
-    const im = new Image();
-    im.alt = "Portrait of Prithwish Samanta";
-    im.onerror = () => { im.remove(); showInitials(); };
-    im.src = CONFIG.photo;
-    photoEl.appendChild(im);
-  } else { showInitials(); }
-
-  // Skills
-  document.querySelectorAll("[data-icon]").forEach(li => {
-    const ic = ICONS[li.dataset.icon];
-    if (!ic) return;
-    const attrs = ic.fill
-      ? 'fill="currentColor"'
-      : 'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
-    li.insertAdjacentHTML("afterbegin",
-      '<svg width="16" height="16" viewBox="0 0 24 24" ' + attrs + ' aria-hidden="true"><path d="' + (ic.fill || ic.stroke) + '"/></svg>');
-  });
-
   // Contact links
   const contact = document.getElementById("contactLinks");
   [
-    ["Email", CONFIG.email, "mailto:" + CONFIG.email],
-    ["LinkedIn", CONFIG.linkedin.replace(/^https?:\/\/(www\.)?/, ""), CONFIG.linkedin],
-    ["GitHub", CONFIG.github.replace(/^https?:\/\/(www\.)?/, ""), CONFIG.github]
-  ].forEach(([label, text, href]) => {
+    ["Email", CONFIG.email, "mailto:" + CONFIG.email, "mail"],
+    ["LinkedIn", CONFIG.linkedin.replace(/^https?:\/\/(www\.)?/, ""), CONFIG.linkedin, "linkedin"],
+    ["GitHub", CONFIG.github.replace(/^https?:\/\/(www\.)?/, ""), CONFIG.github, "github"]
+  ].forEach(([label, text, href, icon]) => {
     const a = document.createElement("a");
     a.href = href;
     if (!href.startsWith("mailto:")) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
-    a.innerHTML = "<span></span><span></span>";
-    a.children[0].textContent = label;
-    a.children[1].textContent = text;
+    a.dataset.icon = icon;
+    a.setAttribute("aria-label", label + ": " + text);
+    a.innerHTML = "<span></span>";
+    a.firstChild.textContent = text;
     contact.appendChild(a);
   });
   document.getElementById("resumeEmail").textContent = CONFIG.email;
@@ -109,6 +91,27 @@
   document.getElementById("resumeClose").addEventListener("click", () => dlg.close());
   document.getElementById("resumePrint").addEventListener("click", () => window.print());
   dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+
+  // Profile photo (falls back to initials if empty or missing)
+  const photoEl = document.getElementById("photo");
+  const showInitials = () => { photoEl.textContent = "PS"; };
+  if (CONFIG.photo) {
+    const im = new Image();
+    im.alt = "Portrait of Prithwish Samanta";
+    im.onerror = () => { im.remove(); showInitials(); };
+    im.src = CONFIG.photo;
+    photoEl.appendChild(im);
+  } else { showInitials(); }
+
+  document.querySelectorAll("[data-icon]").forEach(li => {
+    const ic = ICONS[li.dataset.icon];
+    if (!ic) return;
+    const attrs = ic.fill
+      ? 'fill="currentColor"'
+      : 'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+    li.insertAdjacentHTML("afterbegin",
+      '<svg width="16" height="16" viewBox="0 0 24 24" ' + attrs + ' aria-hidden="true"><path d="' + (ic.fill || ic.stroke) + '"/></svg>');
+  });
 
   // Theme toggle (remembers the choice; follows the system until the first click)
   const root = document.documentElement;
