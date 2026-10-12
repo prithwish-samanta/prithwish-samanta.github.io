@@ -4,7 +4,7 @@
     --ink: #15171c;
     --muted: #5a6170;
     --line: #e4e6eb;
-    --accent: #1f4fd8;
+    --accent: #d9381e;
     --accent-ink: #ffffff;
     --font: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
@@ -15,12 +15,12 @@
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --bg: #101216; --surface: #181b21; --ink: #eceef2; --muted: #9aa1b0;
-      --line: #272b33; --accent: #7ea2ff; --accent-ink: #0b1020;
+      --line: #272b33; --accent: #ff8566; --accent-ink: #0b1020;
     }
   }
   :root[data-theme="dark"] {
     --bg: #101216; --surface: #181b21; --ink: #eceef2; --muted: #9aa1b0;
-    --line: #272b33; --accent: #7ea2ff; --accent-ink: #0b1020;
+    --line: #272b33; --accent: #ff8566; --accent-ink: #0b1020;
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -71,7 +71,8 @@
 
   /* One gentle entrance on page load: photo first, then the intro text in sequence */
   @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-  .photo, .hero-text > * { animation: rise .7s cubic-bezier(.2, .6, .2, 1) both; }
+  .photo, .hero-text > *, .stats { animation: rise .7s cubic-bezier(.2, .6, .2, 1) both; }
+  .stats { animation-delay: .32s; }
   .hero-text > :nth-child(1) { animation-delay: .08s; }
   .hero-text > :nth-child(2) { animation-delay: .16s; }
   .hero-text > :nth-child(3) { animation-delay: .24s; }
@@ -106,6 +107,11 @@
 
   .sub { margin: 0 0 16px; font-size: .98rem; font-weight: 600; color: var(--muted); }
   .sub.spaced { margin-top: 48px; }
+
+  /* Key stats */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; list-style: none; margin: 0; padding: 0 0 56px; }
+  .stats strong { display: block; font-size: 2.1rem; line-height: 1.15; letter-spacing: -0.02em; font-weight: 700; }
+  .stats span { display: block; margin-top: 4px; color: var(--muted); font-size: .92rem; line-height: 1.4; }
 
   /* Certification badges */
   .badges { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
@@ -161,6 +167,9 @@
     body { font-size: 1rem; }
     .hero { flex-direction: column; align-items: flex-start; gap: 24px; padding: 48px 0 48px; }
     .photo { order: 0; width: 104px; height: 104px; font-size: 1.8rem; }
+    .stats { gap: 12px; padding-bottom: 40px; }
+    .stats strong { font-size: 1.6rem; }
+    .stats span { font-size: .85rem; }
     section { padding: 44px 0; }
     .row { grid-template-columns: 1fr; gap: 16px; }
     .badges { grid-template-columns: repeat(2, 1fr); gap: 12px; }
