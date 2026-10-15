@@ -2,7 +2,7 @@
     email: "wprith@gmail.com",
     linkedin: "https://www.linkedin.com/in/prithwish-samanta/",
     github: "https://github.com/prithwish-samanta",
-    resumePdf: "",
+    resumeUrl: "https://drive.google.com/file/d/119WeECev25CoDhcby7S0OSRUH1-vVm4m/view",
     photo: "assets/profile-photo.jpg"
   };
   const CERTS = [
@@ -31,7 +31,6 @@
   };
 
   const certGrid = document.getElementById("certGrid");
-  const resumeCerts = document.getElementById("resumeCerts");
   CERTS.forEach(c => {
     const el = document.createElement(c.url ? "a" : "div");
     el.className = "badge";
@@ -59,10 +58,8 @@
     el.append(media, name, issuer);
     certGrid.appendChild(el);
 
-    const li = document.createElement("li");
-    li.textContent = c.name + " – " + c.issuer;
-    resumeCerts.appendChild(li);
   });
+  document.getElementById("certCount").textContent = CERTS.length;
 
   // Contact links
   const contact = document.getElementById("contactLinks");
@@ -80,17 +77,11 @@
     a.firstChild.textContent = text;
     contact.appendChild(a);
   });
-  document.getElementById("resumeEmail").textContent = CONFIG.email;
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Resume dialog
-  const dlg = document.getElementById("resumeDialog");
-  const dl = document.getElementById("resumeDownload");
-  if (CONFIG.resumePdf) { dl.href = CONFIG.resumePdf; dl.hidden = false; dl.setAttribute("download", ""); }
-  document.getElementById("resumeBtn").addEventListener("click", () => dlg.showModal());
-  document.getElementById("resumeClose").addEventListener("click", () => dlg.close());
-  document.getElementById("resumePrint").addEventListener("click", () => window.print());
-  dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+  // Resume button opens your Google Drive file in a new tab
+  const resumeBtn = document.getElementById("resumeBtn");
+  resumeBtn.href = CONFIG.resumeUrl;
 
   // Profile photo (falls back to initials if empty or missing)
   const photoEl = document.getElementById("photo");
