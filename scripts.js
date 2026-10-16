@@ -14,7 +14,7 @@
     { name: "Claude Certified Associate - Foundations", issuer: "Anthropic", img: "assets/badges/claude-certified-associate-foundations.png", url: "https://www.credly.com/badges/7ab0e888-aaf7-4daf-872e-b4dd406bc491/public_url" },
     { name: "AWS Certified AI Practitioner", issuer: "Amazon Web Services", img: "assets/badges/aws-certified-ai-practitioner.png", url: "https://www.credly.com/badges/b5138a4d-9725-4357-8bb1-6d2adca0db99/public_url" },
     { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", img: "assets/badges/aws-certified-cloud-practitioner.png", url: "https://www.credly.com/badges/af5c3674-e9a5-4b5e-b181-26a826475a36/public_url" },
-    {name: "GitHub Copilot", issuer: "Microsoft", img: "assets/badges/github-copilot.svg", url: "https://www.linkedin.com/safety/go/?url=https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fcredentials%2Fshare%2Fen-in%2FPrithwishSamanta-3509%2F80A78A371770D990%3FsharingId%3D9C6793E3CF3A04F7&urlhash=q0Oj&mt=Ld_xyobRYcCjSfLoQoOdMIXbz7OTlUdbSkJxipD0Br3vxy1o25TYlPGK8QO9JfLyGhPFPRzQluaQelojbNa8qmvbvPwVtGju8xCgGWvle3yo8_lkj2MejRHnc_U&isSdui=true&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_creator_profile_all_content_view%3BxxLknMN2TeuVDCJtCXjkWQ%3D%3D"}
+    {name: "GitHub Copilot", issuer: "Microsoft", img: "assets/badges/github-copilot.svg", url: "https://learn.microsoft.com/en-in/users/prithwishsamanta-3509/credentials/80a78a371770d990"}
   ];
   const ICONS = {
     mail: { stroke: "M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM22 7l-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" },
@@ -76,8 +76,7 @@
     certGrid.appendChild(el);
 
   });
-  document.getElementById("certCount").textContent = CERTS.length;
-
+  
   // Contact links
   const contact = document.getElementById("contactLinks");
   [
